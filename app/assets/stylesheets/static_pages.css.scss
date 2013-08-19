@@ -1,0 +1,30 @@
+.base {
+  background-image: image-url("escheresque.png");
+}
+
+.main {
+  padding: 40px 20px 20px 10px;
+  background-color: rgba(255,255,255,0.5);
+  width: 85%;
+  height: 800px;
+  margin: auto;
+}
+
+div.title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #333;
+}
+
+.project {
+  display:inline-block;
+  margin: 10px;
+
+  .project-image {
+    width: 150px;
+    height: 90px;
+    background-color: #333;
+  }
+}
+

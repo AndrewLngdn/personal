@@ -14,5 +14,5 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require turbolinks
-//= require three/three
+//= require three
 //= require_tree .
