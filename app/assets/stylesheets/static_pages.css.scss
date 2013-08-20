@@ -1,20 +1,65 @@
+body, html {
+  height: 100%;
+}
+
+.left-column {
+  height: 100%;
+  float: left;
+}
+
+.right-column {
+  box-sizing: border-box;
+  width: 187px;
+  height: 100%;
+  float: right;
+  border-left: 1px solid rgb(65, 65, 65);
+}
+
+footer {
+  background-color: #222;
+  color: #444;
+}
+
 .base {
-  background-image: image-url("escheresque.png");
+  height: 100%;
+  background-image: image-url("bg-dark.png");
 }
 
 .main {
-  padding: 40px 20px 20px 10px;
-  background-color: rgba(255,255,255,0.5);
+  box-sizing: border-box;
+
+  padding: 40px 20px 0px 10px;
+  background-color: rgba(54, 53, 53, 0.9);
   width: 85%;
-  height: 800px;
+  max-width: 800px;
+  height: 100%;
+
   margin: auto;
 }
 
-div.title {
+span.title {
+  cursor: default;
+  display: inline-block;
   font-size: 2em;
   margin-bottom: 20px;
   margin-left: 10px;
-  color: #333;
+  //color: #AAA;
+  color: rgba(170, 170, 170, 0.85);
+}
+
+#andrewlngdn {
+  color: rgba(83,83,83,0.85);
+  -webkit-transition: color 0.5s;
+  transition: color 0.5s;
+  &:hover{
+    color: rgba(170, 170, 170, 0.85);
+    -webkit-transition: color 0.5s;
+    transition: color 0.5s;
+  }
+}
+
+.right {
+  float:right;
 }
 
 .project {
@@ -25,6 +70,27 @@ div.title {
     width: 150px;
     height: 90px;
     background-color: #333;
+    border-style: solid;
+    border-width: 3px;
+    border-color: grey;
+    -webkit-transition: border-color 0.3s;
+    transition: border-color 0.3s;
+    &:hover{
+      border-color: #3fe6ff;
+      -webkit-transition: border-color 0.3s;
+      transition: border-color 0.3s;
+    }
   }
 }
 
+.link {
+  -webkit-transition: color 1s;
+  transition: color 1s;
+  text-decoration: none;
+  background-color: transparent;
+  &:hover {
+    background-color: transparent;
+    -webkit-transition: color 1s;
+    transition: color 1s;
+  }
+}

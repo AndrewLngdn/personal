@@ -1,21 +1,49 @@
 <div class="base">
   <div class="main">
 
-    <div class="title">Projects</div>
+    <div class="left-column">
+        <div class="top-text">
+            <span class="title" id="projects">Projects</span>
+        </div>
 
-    <div class="project" id="kaleidosine">
-      <%= link_to saturate_path, 'data-no-turbolink' => true do %>
-        <div class="project-image"></div>
-      <% end %>
-      <%= link_to "kaleidosine", kaleidosine_path, 'data-no-turbolink' => true %>
+        <div class="project" id="kaleidosine">
+          <%= link_to kaleidosine_path, 'data-no-turbolink' => true do %>
+            <div class="project-image"></div>
+          <% end %>
+
+          <%= link_to "kaleidosine",
+                      kaleidosine_path,
+                      'data-no-turbolink' => true,
+                      :class => "link"
+          %>
+
+        </div>
+
+        <div class="project" id="saturate">
+          <%= link_to saturate_path, 'data-no-turbolink' => true do %>
+            <div class="project-image"></div>
+          <% end %>
+
+          <%= link_to "saturate",
+                      saturate_path,
+                      'data-no-turbolink' => true,
+                      :class => "link"
+          %>
+
+        </div>
     </div>
 
-    <div class="project" id="saturate">
-      <%= link_to saturate_path, 'data-no-turbolink' => true do %>
-        <div class="project-image"></div>
-      <% end %>
-      <%= link_to "saturate", saturate_path, 'data-no-turbolink' => true %>
+    <div class="right-column">
+      <span class="title right" id="andrewlngdn">andrewlngdn</span>
+      <%= link_to "github.com/andrewlngdn",
+                  "https://github.com/AndrewLngdn",
+                  :class => "link right"
+      %>
     </div>
 
   </div>
 </div>
+
+<footer>
+  background by Eonscintilla
+</footer>
