@@ -3,6 +3,7 @@ var Kaleidosine = {
 	scene: undefined,
 	rectangles: [],
 	lines: [],
+    corners: [],
 	init: function(){
         var html = "<div class='todo-box'>" +
             "TODO: add audio" +
@@ -20,18 +21,17 @@ var Kaleidosine = {
 		camera.position.y = 0;
 		camera.position.x = 0;
 
-		Kaleidosine.placeCubes(8);
-
-
+		Kaleidosine.placeCubes(2);
 
 		count = 0;
 		var render = function (){
 			Kaleidosine.fanCubes();
 			Kaleidosine.drawCornerLines();
 			scene.updateMatrixWorld();
+            Kaleidosine.detectCollisions();
 
-			// if (count++ == 1)
-				// return;
+            if (count++ == 1000)
+				return;
 			requestAnimationFrame(render);
 			renderer.render(scene, camera);
 		}
@@ -46,7 +46,6 @@ var Kaleidosine = {
 
 			Kaleidosine.rectangles.push(cube);
 			Kaleidosine.scene.add(cube);
-
 
 			for (var j = 0; j < 4; j++ ){
 				var geo = new THREE.Geometry();
@@ -91,7 +90,36 @@ var Kaleidosine = {
 				line.geometry.verticesNeedUpdate = true;
 			}
 		}
-	}
+	},
+
+    detectCollisions: function(){ // naive implementation first,
+                                  // probably need to make this better for
+        Kaleidosine.corners = [];
+        for (var i = 0; i < (Kaleidosine.rectangles.length); i++){
+            var thisBox = Kaleidosine.rectangles[i];
+            for (var j = 0; j < 4; j++){
+                var thisCorner = thisBox.geometry.vertices[j].clone();
+                thisBox.localToWorld(thisCorner);
+                Kaleidosine.corners.push(thisCorner);
+            }
+        }
+
+
+        for (var k = 0; k < Kaleidosine.corners.length; k++){
+
+            var corner = Kaleidosine.corners[k];
+            for (var l = 0; l < Kaleidosine.corners.length; l++){
+                var cornerTwo = Kaleidosine.corners[l];
+                if ( k === l ){
+                    // do nothing
+                } else {
+                    if (corner.distanceToSquared(cornerTwo) < 0.01){
+                        console.log("hit at " + corner.x);
+                    }
+                }
+            }
+        }
+    }
 }
 
 
