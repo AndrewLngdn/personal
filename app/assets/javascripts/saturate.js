@@ -130,7 +130,7 @@ var Saturate = {
 
             $this.toggleClass('selected');
             if ($this.hasClass('selected')){
-                Saturate.options.opacity[layer] = 0.8;
+                Saturate.options.opacity[layer] = 0.2;
 
             } else {
                 Saturate.options.opacity[layer] = 0.0;

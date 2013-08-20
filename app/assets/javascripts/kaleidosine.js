@@ -4,6 +4,11 @@ var Kaleidosine = {
 	rectangles: [],
 	lines: [],
 	init: function(){
+        var html = "<div class='todo-box'>" +
+            "TODO: add audio" +
+            "</div>";
+        $('body').append(html);
+
 		Kaleidosine.audioContext = new webkitAudioContext();
 		var scene = Kaleidosine.scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.01, 1000);
@@ -16,6 +21,8 @@ var Kaleidosine = {
 		camera.position.x = 0;
 
 		Kaleidosine.placeCubes(8);
+
+
 
 		count = 0;
 		var render = function (){
