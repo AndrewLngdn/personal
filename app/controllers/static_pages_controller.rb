@@ -6,4 +6,8 @@ class StaticPagesController < ApplicationController
   def saturate
 
   end
+
+  def dots
+
+  end
 end

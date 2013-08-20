@@ -2,6 +2,7 @@ Personal::Application.routes.draw do
   #resources :examples
   get 'kaleidosine' => 'static_pages#kaleidosine'
   get 'saturate' => 'static_pages#saturate'
+  get 'dots' => 'static_pages#dots'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

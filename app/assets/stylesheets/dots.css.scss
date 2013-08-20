@@ -1,0 +1,55 @@
+div.dot {
+  height: 65px;
+  display:inline-block;
+  width: 65px;
+  -webkit-animation:osc 15s ease infinite;
+  border-radius:100%;
+  background:#999;
+}
+
+@-webkit-keyframes osc{
+  0%{
+    background: #aaa;
+    -webkit-transform:scale(0.1);
+  }
+  10%{
+    background: #54eec0;
+    -webkit-transform:scale(1);
+  }
+  20%{
+    background: #aaa;
+    -webkit-transform:scale(0.1);
+  }
+  30%{
+    background: #cfee51;
+    -webkit-transform:scale(1);
+  }
+  40%{
+    background: #aaa;
+    -webkit-transform:scale(0.1);
+  }
+  50%{
+    background: #ee9e54;
+    -webkit-transform:scale(1);
+  }
+  60%{
+    background: #aaa;
+    -webkit-transform:scale(0.1);
+  }
+  70%{
+    background: #ee83d6;
+    -webkit-transform:scale(1);
+  }
+  80%{
+    background: #aaa;
+    -webkit-transform:scale(0.1);
+  }
+  90%{
+    background: #a17fee;
+    -webkit-transform:scale(1);
+  }
+  100%{
+    background: #aaa;
+    -webkit-transform:scale(0.1);
+  }
+}
