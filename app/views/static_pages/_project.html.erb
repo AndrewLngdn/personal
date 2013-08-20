@@ -1,6 +1,6 @@
 <div class="project" id=project>
   <%= link_to path, 'data-no-turbolink' => true do %>
-      <div class="project-image"></div>
+      <div class="project-image" style="background-image:url(<%= asset_path(project + '.png') %>)"></div>
   <% end %>
 
   <%= link_to project,
