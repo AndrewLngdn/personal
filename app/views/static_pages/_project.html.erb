@@ -1,0 +1,11 @@
+<div class="project" id=project>
+  <%= link_to path, 'data-no-turbolink' => true do %>
+      <div class="project-image"></div>
+  <% end %>
+
+  <%= link_to project,
+              path,
+              'data-no-turbolink' => true,
+              :class => "link"
+  %>
+</div>

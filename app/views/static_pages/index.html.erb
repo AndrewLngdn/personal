@@ -6,31 +6,10 @@
             <span class="title" id="projects">Projects</span>
         </div>
 
-        <div class="project" id="kaleidosine">
-          <%= link_to kaleidosine_path, 'data-no-turbolink' => true do %>
-            <div class="project-image"></div>
-          <% end %>
+        <%= render partial: "project", locals: {project: "kaleidoscope", path: kaleidosine_path} %>
+        <%= render partial: "project", locals: {project: "dots", path: dots_path} %>
+        <%= render partial: "project", locals: {project: "saturate", path: saturate_path} %>
 
-          <%= link_to "kaleidosine",
-                      kaleidosine_path,
-                      'data-no-turbolink' => true,
-                      :class => "link"
-          %>
-
-        </div>
-
-        <div class="project" id="saturate">
-          <%= link_to saturate_path, 'data-no-turbolink' => true do %>
-            <div class="project-image"></div>
-          <% end %>
-
-          <%= link_to "saturate",
-                      saturate_path,
-                      'data-no-turbolink' => true,
-                      :class => "link"
-          %>
-
-        </div>
     </div>
 
     <div class="right-column">
