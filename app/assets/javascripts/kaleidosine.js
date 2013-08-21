@@ -21,7 +21,7 @@ var Kaleidosine = {
 		camera.position.y = 0;
 		camera.position.x = 0;
 
-		Kaleidosine.placeCubes(2);
+		Kaleidosine.placeCubes(10);
 
 		count = 0;
 		var render = function (){
@@ -30,8 +30,8 @@ var Kaleidosine = {
 			scene.updateMatrixWorld();
             Kaleidosine.detectCollisions();
 
-            if (count++ == 1000)
-				return;
+//            if (count++ == 1000)
+//				return;
 			requestAnimationFrame(render);
 			renderer.render(scene, camera);
 		}
