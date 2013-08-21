@@ -6,7 +6,7 @@ var Dots = {
         var limit = width*height/(65*65);
         var interval = 100;
         var a = setInterval(function(){
-            $('body').append('<div class="dot"></div>');
+            $('.container').append('<div class="dot"></div>');
             count++;
             if (count > limit){
                 clearInterval(a);
