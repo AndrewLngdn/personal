@@ -15,4 +15,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require three
+//= require jscolor
 //= require_tree .
+
+
+function updatebackground(color){
+    console.log("here");
+}

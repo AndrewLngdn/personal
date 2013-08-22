@@ -8,8 +8,21 @@ var Kaleidosine = {
 	init: function(){
         var html = "<div class='todo-box'>" +
             "TODO: add audio" +
-            "</div>";
+            "</div>" +
+            "<input class='color' {pickerFaceColor:'transparent'," +
+            "pickerFace:3,pickerBorder:0," +
+            "pickerInsetColor:'black'," +
+            "onImmediateChange:'Kaleidosine.updateBackground(this);'" +
+            "}'>";
         $('body').append(html);
+
+        $('.color').bind("change blur keyup mouseup", function() {
+            var picker = this;
+            $('body').css("background-color", function(){
+                return '#' + picker.color.toString();
+            });
+        });
+
 
 		Kaleidosine.audioContext = new webkitAudioContext();
         Kaleidosine.voices.push(new SineWave(Kaleidosine.audioContext));
@@ -19,7 +32,6 @@ var Kaleidosine = {
 		var renderer = new THREE.WebGLRenderer();
 		renderer.setSize(window.innerWidth, window.innerHeight);
 		document.body.appendChild(renderer.domElement);
-		console.log(window.innerWidth, window.innerHeight)
 		camera.position.z = 10;
 		camera.position.y = 0;
 		camera.position.x = 0;
@@ -40,6 +52,10 @@ var Kaleidosine = {
 		}
 		render();
 	},
+
+    updateBackground: function(picker){
+        document.getElementsByTagName('BODY')[0].style.backgroundColor = '#'+color.color;
+    },
 
 	placeCubes: function(n){
 		for (var i = 0; i < n; i++){
