@@ -27,16 +27,19 @@ var Kaleidosine = {
 		Kaleidosine.placeCubes(3);
 
 		count = 0;
-//        Kaleidosine.voices[1].noteOn("C4");
         var render = function (){
 			Kaleidosine.fanCubes();
 			Kaleidosine.drawCornerLines();
 			scene.updateMatrixWorld();
             Kaleidosine.detectCollisions();
 
-//            if (count++ == 100)
+//            if ((count++)%200 === 0){
+//                console.log(count);
+//                Kaleidosine.voices[1].noteOn("C4");
+//            }
 //				return;
-			requestAnimationFrame(render);
+
+            requestAnimationFrame(render);
 			renderer.render(scene, camera);
 		}
 		render();

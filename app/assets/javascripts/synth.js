@@ -17,8 +17,10 @@ Synth = function(audioContext){
     this.filter = this.audioContext.createBiquadFilter();
     this.filter.type = 0;
 
+    this.envelope = new Float32Array([0.01, 0.2, 0.0, 0.5]);
+
     this.oscillator.connect(this.filter);
-    this.filter.connect(this.gain);
+    this.filter.connect(this.gainNode);
     this.gainNode.connect(this.audioContext.destination);
 }
 
@@ -28,9 +30,14 @@ Synth.prototype.noteOn = function(note){
     var now = this.audioContext.currentTime;
     this.frequency = frequency;
 
+    this.oscillator.frequency.cancelScheduledValues(now);
+    this.gainNode.gain.cancelScheduledValues(now);
+
     this.oscillator.frequency.setValueAtTime(frequency, now);
     this.filter.frequency.setValueAtTime(this.filterFrequency, now);
-    this.gainNode.gain.setValueAtTime(1, now);
+    this.gainNode.gain.setValueAtTime(this.gainNode.gain.value, now);
+    this.gainNode.gain.linearRampToValueAtTime(1.0, now + this.envelope[0]);
+    this.gainNode.gain.linearRampToValueAtTime(this.envelope[2], now + this.envelope[0] + this.envelope[1]);
 }
 
 Synth.prototype.noteSlide = function(note){
@@ -40,13 +47,14 @@ Synth.prototype.noteSlide = function(note){
 
     this.oscillator.frequency.linearRampToValueAtTime(frequency, now + this.portamento);
     this.filter.frequency.setValueAtTime(this.filterFrequency, now);
-
 }
 
 Synth.prototype.noteOff = function(){
     var now = this.audioContext.currentTime;
+    this.gainNode.gain.cancelScheduledValues(now);
 
-    this.gainNode.gain.setValueAtTime(0, now);
+    this.gainNode.gain.setValueAtTime(this.gainNode.gain.value, now);
+    this.gainNode.gain.linearRampToValueAtTime(0.0, now + this.envelope[3]);
 }
 
 Synth.prototype.setFilterFrequency = function(value){
