@@ -13,6 +13,7 @@ var Kaleidosine = {
 
 		Kaleidosine.audioContext = new webkitAudioContext();
         Kaleidosine.voices.push(new SineWave(Kaleidosine.audioContext));
+        Kaleidosine.voices.push(new Synth(Kaleidosine.audioContext));
 		var scene = Kaleidosine.scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.01, 1000);
 		var renderer = new THREE.WebGLRenderer();
@@ -26,15 +27,15 @@ var Kaleidosine = {
 		Kaleidosine.placeCubes(3);
 
 		count = 0;
-//        Kaleidosine.voices[0].play();
+//        Kaleidosine.voices[1].noteOn("C4");
         var render = function (){
 			Kaleidosine.fanCubes();
 			Kaleidosine.drawCornerLines();
 			scene.updateMatrixWorld();
             Kaleidosine.detectCollisions();
 
-            if (count++ == 100)
-				return;
+//            if (count++ == 100)
+//				return;
 			requestAnimationFrame(render);
 			renderer.render(scene, camera);
 		}
