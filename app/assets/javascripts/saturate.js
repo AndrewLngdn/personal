@@ -8,10 +8,10 @@ var Saturate = {
             grayscale: 0
         },
         opacity: {
-            one: 0.2,
-            two: 0.2,
-            three: 0.2,
-            four: 0.2
+            one: 1,
+            two: 1,
+            three: 1,
+            four: 1
         },
         palette: colorPalettes["Giant Goldfish"]
     },
@@ -60,11 +60,24 @@ var Saturate = {
 
                 var colorTransform = function() {
                     if (Saturate.options.alternateBlack && i%2 == 0)
-                        return "background-color: #000; "
+                        return "background-color: rgba(0, 0, 0, 0.2);"
 
                     var index = Math.floor((degrees/720)%4);
-                    return "background-color: #" + Saturate.options.palette[index] + ";";
+                    var RGB= "#" + Saturate.options.palette[index];
+                    var A='0.2';
+                    var RGBA = 'background-color: rgba('+
+                        parseInt(RGB.substring(1,3),16)+','+
+                        parseInt(RGB.substring(3,5),16)+','+
+                        parseInt(RGB.substring(5,7),16)+','+
+                        A+');'
+                    return RGBA;
+//                    return "background-color: #" + Saturate.options.palette[index] + ";";
                 }
+
+//                var RGB='#ffabcd';
+//                var A='0.2';
+//                var RGBA='rbga('+parseInt(RGB.substring(1,3),16)+','+parseInt(RGB.substring(3,5),16)+','+parseInt(RGB.substring(5,7),16)+','+A+')';
+//                console.log(RGBA);
 
                 var opacityOne = "opacity: " + Saturate.options.opacity.one + ";";
                 var opacityTwo = "opacity: " + Saturate.options.opacity.two + ";";
@@ -73,10 +86,10 @@ var Saturate = {
 
 //                console.log(opacityFour);
 
-                box1[i].setAttribute("style", boxTransform + colorTransform() + opacityOne);
-                box2[i].setAttribute("style", boxTransform + colorTransform() + opacityTwo);
-                box3[i].setAttribute("style", boxTransform + colorTransform() + opacityThree);
-                box4[i].setAttribute("style", boxTransform + colorTransform() + opacityFour);
+                box1[i].setAttribute("style", boxTransform + colorTransform() + opacityOne );
+                box2[i].setAttribute("style", boxTransform + colorTransform() + opacityTwo );
+                box3[i].setAttribute("style", boxTransform + colorTransform() + opacityThree );
+                box4[i].setAttribute("style", boxTransform + colorTransform() + opacityFour );
             }
         }
 
@@ -129,7 +142,7 @@ var Saturate = {
 
             $this.toggleClass('selected');
             if ($this.hasClass('selected')){
-                Saturate.options.opacity[layer] = 0.2;
+                Saturate.options.opacity[layer] = 1;
 
             } else {
                 Saturate.options.opacity[layer] = 0.0;
@@ -159,8 +172,6 @@ var Saturate = {
 
                 div.append(color);
             }
-
-//            $(".left-options").css("height", "100px");
         }
 
         $('.color').click(function(event){
