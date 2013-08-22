@@ -82,7 +82,7 @@ div.selected{
 	top: 25%;
 	left: 30%;
 	-webkit-transform-origin:50% 50%;
-	-webkit-transition: 0.1s all linear ;
+	-webkit-transition: -webkit-transform 0.1s linear, background-color 1s linear;
 }
 
 .two {

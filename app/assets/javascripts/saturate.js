@@ -12,7 +12,8 @@ var Saturate = {
             two: 0.2,
             three: 0.2,
             four: 0.2
-        }
+        },
+        palette: colorPalettes["Giant Goldfish"]
     },
 
     init: function(){
@@ -39,6 +40,7 @@ var Saturate = {
 
         var degrees = 0;
         var j = 0;
+        var colorIndex = 0;
 
         function transformBoxes(){
             var box1 = $(".one");
@@ -54,30 +56,27 @@ var Saturate = {
 
                 var degreeRotate = (i+1)*degrees/(5*Saturate.options.boxCount);
 
-                if (Saturate.options.alternateBlack && i%2 == 0){
-                    colorR = colorG = colorB = 0;
-                } else {
-                    colorR = 100;
-                    colorG = 30;
-                    colorB = Math.floor(degrees/2)%255;
-                }
-
                 var boxTransform = "-webkit-transform: rotate(" + degreeRotate + "deg);"
-                var boxWidth = "width: " + Math.floor(600*(Math.sin((degrees))+1))%255 + "px; "
-                var boxHeight = "height: " + Math.floor(600*(Math.sin((degrees))+1))%255 + "px; "
-                var colorTransform = function(r, g, b, a) {
-                    return "background-color: rgba(" + r + "," + g + "," + b + ", " + a + ");"
+
+                var colorTransform = function() {
+                    if (Saturate.options.alternateBlack && i%2 == 0)
+                        return "background-color: #000; "
+
+                    var index = Math.floor((degrees/720)%4);
+                    return "background-color: #" + Saturate.options.palette[index] + ";";
                 }
 
-                var opacityOne = Saturate.options.opacity.one;
-                var opacityTwo = Saturate.options.opacity.two;
-                var opacityThree = Saturate.options.opacity.three;
-                var opacityFour = Saturate.options.opacity.four;
+                var opacityOne = "opacity: " + Saturate.options.opacity.one + ";";
+                var opacityTwo = "opacity: " + Saturate.options.opacity.two + ";";
+                var opacityThree = "opacity: " + Saturate.options.opacity.three + ";";
+                var opacityFour = "opacity: " + Saturate.options.opacity.four + ";";
 
-                box1[i].setAttribute("style", boxTransform + colorTransform(colorR, colorG, colorB, opacityOne));
-                box2[i].setAttribute("style", boxTransform + colorTransform(0, 0, 0, opacityTwo));
-                box3[i].setAttribute("style", boxTransform + colorTransform(colorR, colorG, colorB, opacityThree));
-                box4[i].setAttribute("style", boxTransform + colorTransform(0, 0, 0, opacityFour));
+//                console.log(opacityFour);
+
+                box1[i].setAttribute("style", boxTransform + colorTransform() + opacityOne);
+                box2[i].setAttribute("style", boxTransform + colorTransform() + opacityTwo);
+                box3[i].setAttribute("style", boxTransform + colorTransform() + opacityThree);
+                box4[i].setAttribute("style", boxTransform + colorTransform() + opacityFour);
             }
         }
 
@@ -134,6 +133,7 @@ var Saturate = {
 
             } else {
                 Saturate.options.opacity[layer] = 0.0;
+                console.log(Saturate.options.opacity[layer]);
             }
         });
 
@@ -147,6 +147,33 @@ var Saturate = {
             }
         });
 
+        for (var key in colorPalettes){
+            var div = $("<div class='palette'> <div class='key'>" + key + "</div></div>").appendTo(".palettes");
+            for (var i in colorPalettes[key]){
+                var color = "<div " +
+                    "class='color' " +
+                    "style='height:20px; width:20px;" +
+                    "background-color: #" + colorPalettes[key][i] + ";" +
+                    "display: inline-block" +
+                    "'></div>";
+
+                div.append(color);
+            }
+
+//            $(".left-options").css("height", "100px");
+        }
+
+        $('.color').click(function(event){
+            var palette = $.trim($(this).parent($(".key")).text());
+            console.log(palette);
+            Saturate.options.palette = colorPalettes[palette];
+        });
+
+        $('.key').click(function(event){
+            var palette = $(this).text();
+            console.log(palette);
+            Saturate.options.palette = colorPalettes[palette];
+        })
 
     }
 };
