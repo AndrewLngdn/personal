@@ -4,6 +4,7 @@ var Kaleidosine = {
 	rectangles: [],
 	lines: [],
     corners: [],
+    voices: [],
 	init: function(){
         var html = "<div class='todo-box'>" +
             "TODO: add audio" +
@@ -11,6 +12,8 @@ var Kaleidosine = {
         $('body').append(html);
 
 		Kaleidosine.audioContext = new webkitAudioContext();
+        Kaleidosine.voices.push(new SineWave(Kaleidosine.audioContext));
+        Kaleidosine.voices.push(new Synth(Kaleidosine.audioContext));
 		var scene = Kaleidosine.scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.01, 1000);
 		var renderer = new THREE.WebGLRenderer();
@@ -114,7 +117,8 @@ var Kaleidosine = {
                     // do nothing
                 } else {
                     if (corner.distanceToSquared(cornerTwo) < 0.01){
-                        console.log("hit at " + corner.x);
+                        var freq = (corner.x + 40) * 10;
+                        Kaleidosine.voices[0].setFrequency(freq);
                     }
                 }
             }
