@@ -25,7 +25,7 @@ var Kaleidosine = {
 
 
 		Kaleidosine.audioContext = new webkitAudioContext();
-        Kaleidosine.voices.push(new SineWave(Kaleidosine.audioContext));
+//        Kaleidosine.voices.push(new SineWave(Kaleidosine.audioContext));
         Kaleidosine.voices.push(new Synth(Kaleidosine.audioContext));
 		var scene = Kaleidosine.scene = new THREE.Scene();
 		var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.01, 1000);
@@ -134,7 +134,7 @@ var Kaleidosine = {
                 } else {
                     if (corner.distanceToSquared(cornerTwo) < 0.01){
                         var freq = (corner.x + 40) * 10;
-                        Kaleidosine.voices[0].setFrequency(freq);
+//                        Kaleidosine.voices[0].setFrequency(freq);
                     }
                 }
             }
