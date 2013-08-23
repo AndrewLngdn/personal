@@ -11,6 +11,10 @@ div.dot {
   -webkit-animation:osc 15s ease infinite;
   border-radius:100%;
   background:#999;
+
+  &:hover {
+    -webkit-animation:none;
+  }
 }
 
 @-webkit-keyframes osc{
