@@ -17,8 +17,8 @@ SineWave.prototype.process = function(e) {
 	var data = e.outputBuffer.getChannelData(0);
 
 	for (var i = 0; i < data.length; ++i){
-//        var a = this.frequency * 2 * Math.PI;
-//        var b = this.sample_rate / a;
+        var a = this.frequency * 2 * Math.PI;
+        var b = this.sample_rate / a;
 		data[i] = Math.sin(this.x++ / (this.sample_rate / (this.frequency * 2 * Math.PI)));
 
 		if (this.next_frequency != this.frequency){
