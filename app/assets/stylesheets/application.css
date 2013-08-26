@@ -12,3 +12,12 @@
  *= require jquery.ui.all
  *= require_tree .
  */
+
+
+.small {
+    font-size: 0.8em;
+}
+
+.center {
+    text-align: center;
+}

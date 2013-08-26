@@ -4,8 +4,7 @@ var Saturate = {
         degreeStep: 1.0,
         alternateBlack: true,
         filters: {
-            saturate: 1,
-            grayscale: 0
+            saturate: 1
         },
         opacity: {
             one: 1,
@@ -47,7 +46,6 @@ var Saturate = {
             var box2 = $(".two");
             var box3 = $(".three");
             var box4 = $(".four");
-            var colorR, colorG, colorB;
 
             j++;
 
@@ -71,20 +69,12 @@ var Saturate = {
                         parseInt(RGB.substring(5,7),16)+','+
                         A+');'
                     return RGBA;
-//                    return "background-color: #" + Saturate.options.palette[index] + ";";
                 }
-
-//                var RGB='#ffabcd';
-//                var A='0.2';
-//                var RGBA='rbga('+parseInt(RGB.substring(1,3),16)+','+parseInt(RGB.substring(3,5),16)+','+parseInt(RGB.substring(5,7),16)+','+A+')';
-//                console.log(RGBA);
 
                 var opacityOne = "opacity: " + Saturate.options.opacity.one + ";";
                 var opacityTwo = "opacity: " + Saturate.options.opacity.two + ";";
                 var opacityThree = "opacity: " + Saturate.options.opacity.three + ";";
                 var opacityFour = "opacity: " + Saturate.options.opacity.four + ";";
-
-//                console.log(opacityFour);
 
                 box1[i].setAttribute("style", boxTransform + colorTransform() + opacityOne );
                 box2[i].setAttribute("style", boxTransform + colorTransform() + opacityTwo );
@@ -96,9 +86,7 @@ var Saturate = {
 
         var calculateAmount = function(filter, direction){
             var amount = Saturate.options.filters[filter];
-            if (filter == "grayscale"){
-                increment = 0.2;
-            } else if (filter == "saturate"){
+            if (filter == "saturate"){
                 increment = 1;
             }
 
@@ -106,10 +94,6 @@ var Saturate = {
                 amount += increment;
             } else if (direction == "-") {
                 amount = Math.max(amount-increment, 0);
-            }
-
-            if (filter == "grayscale"){
-                amount = Math.min(amount,1);
             }
 
             Saturate.options.filters[filter] = amount;
@@ -130,9 +114,6 @@ var Saturate = {
             updateFilter('saturate', e.target);
         });
 
-        $('.grayscale').click(function(e){
-            updateFilter('grayscale', e.target);
-        });
 
         $('.layer-one, .layer-two, .layer-three, .layer-four').addClass('selected');
 

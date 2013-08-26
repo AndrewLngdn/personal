@@ -16,11 +16,15 @@ div.selected{
 	background-color: #A9EED0;
 }
 
-
 .left-options{
 	color: black;
 	width: 250px;
 	background-color: rgb(187, 187, 187);
+    .palette {
+        color: #333;
+        padding: 5px 10px 10px 10px;
+        border-top: 1px solid rgb(165, 165, 165);
+    }
 }
 
 .option-box{
