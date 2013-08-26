@@ -19,6 +19,11 @@
 //= require_tree .
 
 
-function updatebackground(color){
-    console.log("here");
+var staticPages = {
+    init: function(){
+        $('.dropdown-bar').click(function(){
+            $(this).children('.triangle').toggleClass("rotate-n90");
+            $(this).children('.to-drop').toggleClass("height-0");
+        });
+    }
 }

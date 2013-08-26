@@ -2,6 +2,18 @@ body, html {
   height: 100%;
 }
 
+.triangle {
+  float:right;
+  margin: 4px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 5px 5px 5px 0;
+  border-color: transparent #c2c2c2 transparent transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
 .left-column {
   padding-top: 40px;
   height: 100%;
@@ -64,9 +76,39 @@ span.title {
   float:right;
 }
 
+.rotate-n90 {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+
+.projects {
+  vertical-align: top;
+}
 .project {
   display:inline-block;
   margin: 10px;
+  width: 150px;
+  vertical-align: top;
+
+  .dropdown-bar{
+    cursor: pointer;
+
+    .to-drop{
+      max-height: 200px;
+      opacity: 1;
+      color: red;
+      overflow:hidden;
+      -webkit-transition: max-height 1s, opacity 1s;
+
+    }
+    .height-0{
+      max-height: 0px;
+      opacity: 0;
+      -webkit-transition: max-height 1s opacity 1s;
+    }
+
+  }
 
   .project-image {
     opacity: 0.5;

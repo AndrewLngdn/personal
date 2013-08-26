@@ -1,11 +1,23 @@
 <div class="project" id=project>
   <%= link_to path, 'data-no-turbolink' => true do %>
-      <div class="project-image" style="background-image:url(<%= asset_path(project + '.png') %>)"></div>
+    <div class="project-image" style="background-image:url(<%= asset_path(project + '.png') %>)"></div>
   <% end %>
 
-  <%= link_to project,
-              path,
-              'data-no-turbolink' => true,
-              :class => "link"
-  %>
+  <div class="dropdown-bar">
+    <%= link_to project,
+            path,
+            'data-no-turbolink' => true,
+            :class => "link"
+    %>
+
+    <div class="triangle"></div>
+    <div class="to-drop height-0">
+      <% if project == "kaleidosine"   %>
+      asdf awef oing awef oinaf weoin wfoein lakng pklnljea foinlkneaf oin
+          awf oeinlkn oianlfke iubaowef oinoinoinoin awef bybja fuyb b o baw ef
+      <% end %>
+      staticPages.<%= project %>
+    </div>
+
+  </div>
 </div>
