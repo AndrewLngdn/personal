@@ -1,25 +1,27 @@
 <div class="base">
-  <div class="main">
+  <div class="bg-gradient">
+      <div class="main">
 
-    <div class="left-column">
-        <div class="top-text">
-            <span class="title" id="projects">Projects</span>
+        <div class="left-column">
+            <div class="top-text">
+                <span class="title" id="projects">Projects</span>
+            </div>
+
+            <%= render partial: "project", locals: {project: "kaleidosine", path: kaleidosine_path} %>
+            <%= render partial: "project", locals: {project: "dots", path: dots_path} %>
+            <%= render partial: "project", locals: {project: "saturate", path: saturate_path} %>
+
         </div>
 
-        <%= render partial: "project", locals: {project: "kaleidosine", path: kaleidosine_path} %>
-        <%= render partial: "project", locals: {project: "dots", path: dots_path} %>
-        <%= render partial: "project", locals: {project: "saturate", path: saturate_path} %>
+        <div class="right-column">
+          <span class="title right" id="andrewlngdn">andrewlngdn</span>
+          <%= link_to "github.com/andrewlngdn",
+                      "https://github.com/AndrewLngdn",
+                      :class => "link right"
+          %>
+        </div>
 
-    </div>
-
-    <div class="right-column">
-      <span class="title right" id="andrewlngdn">andrewlngdn</span>
-      <%= link_to "github.com/andrewlngdn",
-                  "https://github.com/AndrewLngdn",
-                  :class => "link right"
-      %>
-    </div>
-
+      </div>
   </div>
 </div>
 
