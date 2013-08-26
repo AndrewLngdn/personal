@@ -21,8 +21,9 @@ SineWave.prototype.process = function(e) {
         var b = this.sample_rate / a;
 		data[i] = Math.sin(this.x++ / b);
 
+        var xx = this.x / b;
 		if (this.next_frequency != this.frequency){
-			next_data = Math.sin(this.x / b );
+			next_data = Math.sin(xx);
 
 			if (data[i] < 0.001 && data[i] > -0.001 && data[i] < next_data){
 				this.frequency = this.next_frequency;
