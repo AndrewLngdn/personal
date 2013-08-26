@@ -19,10 +19,10 @@ SineWave.prototype.process = function(e) {
 	for (var i = 0; i < data.length; ++i){
         var a = this.frequency * 2 * Math.PI;
         var b = this.sample_rate / a;
-		data[i] = Math.sin(this.x++ / (this.sample_rate / (this.frequency * 2 * Math.PI)));
+		data[i] = Math.sin(this.x++ / b);
 
 		if (this.next_frequency != this.frequency){
-			next_data = Math.sin(this.x / (this.sample_rate / (this.frequency * 2 * Math.PI)));
+			next_data = Math.sin(this.x / b );
 
 			if (data[i] < 0.001 && data[i] > -0.001 && data[i] < next_data){
 				this.frequency = this.next_frequency;
@@ -42,8 +42,4 @@ SineWave.prototype.pause = function() {
 
 SineWave.prototype.setFrequency = function(freq){
 	this.next_frequency = freq;
-}
-
-function () {
-    //testing heroku
 }
