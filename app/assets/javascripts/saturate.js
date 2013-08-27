@@ -7,10 +7,10 @@ var Saturate = {
             saturate: 1
         },
         opacity: {
-            one: 1,
-            two: 1,
-            three: 1,
-            four: 1
+            one: 0.2,
+            two: 0.2,
+            three: 0.2,
+            four: 0.2
         },
         palette: colorPalettes["Giant Goldfish"]
     },
@@ -22,10 +22,10 @@ var Saturate = {
     addBoxes: function(number){
         for (var i = 0; i < number; i++){
             var html = "";
-            html += "<div class='one'>";
-            html +=  	"<div class='two'>";
-            html += 		"<div class='three'>";
-            html += 			"<div class='four'></div>";
+            html += "<div class='box one'>";
+            html +=  	"<div class='box two'>";
+            html += 		"<div class='box three'>";
+            html += 			"<div class='box four'></div>";
             html += "</div></div></div>";
 
             $('body').append(html);
@@ -39,7 +39,6 @@ var Saturate = {
 
         var degrees = 0;
         var j = 0;
-        var colorIndex = 0;
 
         function transformBoxes(){
             var box1 = $(".one");
@@ -56,30 +55,29 @@ var Saturate = {
 
                 var boxTransform = "-webkit-transform: rotate(" + degreeRotate + "deg);"
 
-                var colorTransform = function() {
+                var colorTransform = function(opacity) {
                     if (Saturate.options.alternateBlack && i%2 == 0)
-                        return "background-color: rgba(0, 0, 0, 0.2);"
+                        return "background-color: rgba(0, 0, 0, " + opacity + ");"
 
                     var index = Math.floor((degrees/720)%4);
                     var RGB= "#" + Saturate.options.palette[index];
-                    var A='0.2';
                     var RGBA = 'background-color: rgba('+
                         parseInt(RGB.substring(1,3),16)+','+
                         parseInt(RGB.substring(3,5),16)+','+
                         parseInt(RGB.substring(5,7),16)+','+
-                        A+');'
+                        opacity+');'
                     return RGBA;
                 }
 
-                var opacityOne = "opacity: " + Saturate.options.opacity.one + ";";
-                var opacityTwo = "opacity: " + Saturate.options.opacity.two + ";";
-                var opacityThree = "opacity: " + Saturate.options.opacity.three + ";";
-                var opacityFour = "opacity: " + Saturate.options.opacity.four + ";";
+                var opacityOne = Saturate.options.opacity.one;
+                var opacityTwo = Saturate.options.opacity.two;
+                var opacityThree = Saturate.options.opacity.three;
+                var opacityFour = Saturate.options.opacity.four;
 
-                box1[i].setAttribute("style", boxTransform + colorTransform() + opacityOne );
-                box2[i].setAttribute("style", boxTransform + colorTransform() + opacityTwo );
-                box3[i].setAttribute("style", boxTransform + colorTransform() + opacityThree );
-                box4[i].setAttribute("style", boxTransform + colorTransform() + opacityFour );
+                box1[i].setAttribute("style", boxTransform + colorTransform(opacityOne) );
+                box2[i].setAttribute("style", boxTransform + colorTransform(opacityTwo) );
+                box3[i].setAttribute("style", boxTransform + colorTransform(opacityThree) );
+                box4[i].setAttribute("style", boxTransform + colorTransform(opacityFour) );
             }
         }
 
@@ -123,7 +121,7 @@ var Saturate = {
 
             $this.toggleClass('selected');
             if ($this.hasClass('selected')){
-                Saturate.options.opacity[layer] = 1;
+                Saturate.options.opacity[layer] = 0.2;
 
             } else {
                 Saturate.options.opacity[layer] = 0.0;
@@ -134,8 +132,8 @@ var Saturate = {
         $('.speed').slider({
             value: Saturate.degreeStep,
             step: 0.01,
-            max: 10,
-            min: -10,
+            max: 7,
+            min: -7,
             slide: function(event, ui){
                 Saturate.options.degreeStep = ui.value;
             }
@@ -155,17 +153,35 @@ var Saturate = {
             }
         }
 
+        $('.palette').first().addClass('selected');
+
         $('.color').click(function(event){
             var palette = $.trim($(this).parent($(".key")).text());
-            console.log(palette);
             Saturate.options.palette = colorPalettes[palette];
+            console.log(event);
         });
 
         $('.key').click(function(event){
             var palette = $(this).text();
-            console.log(palette);
             Saturate.options.palette = colorPalettes[palette];
+            console.log(event);
+
         })
+
+        $('.palette, .color, .key').click(function(e){
+            console.log(e);
+
+            $('.palette, .color, .key').removeClass('selected');
+            $(this).addClass('selected');
+        })
+
+
+        $('.color-picker').bind("change blur keyup mouseup", function() {
+            var picker = this;
+            $('body').css("background-color", function(){
+                return '#' + picker.color.toString();
+            });
+        });
 
     }
 };

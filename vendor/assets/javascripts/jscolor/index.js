@@ -14,7 +14,7 @@ var jscolor = {
 
 
 	dir : '', // location of jscolor directory (leave empty to autodetect)
-	bindClass : 'color', // class name
+	bindClass : 'color-picker', // class name
 	binding : true, // automatic binding via <input class="...">
 	preloading : true, // use image preloading?
 

@@ -9,14 +9,13 @@ var Kaleidosine = {
         var html = "<div class='todo-box'>" +
             "TODO: add audio" +
             "</div>" +
-            "<input class='color' {pickerFaceColor:'transparent'," +
+            "<input class='color-picker' {pickerFaceColor:'transparent'," +
             "pickerFace:3,pickerBorder:0," +
             "pickerInsetColor:'black'," +
-            "onImmediateChange:'Kaleidosine.updateBackground(this);'" +
             "}'>";
         $('body').append(html);
 
-        $('.color').bind("change blur keyup mouseup", function() {
+        $('.color-picker').bind("change blur keyup mouseup", function() {
             var picker = this;
             $('body').css("background-color", function(){
                 return '#' + picker.color.toString();

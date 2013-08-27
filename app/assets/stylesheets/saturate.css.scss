@@ -38,21 +38,22 @@ div.selected{
 
 }
 
+
 .option-text{
-	display:inline-block;
-	padding-top:7px;
+  display:inline-block;
+  padding-top:7px;
 }
 
 .plus, .minus{
-	border-left:1px solid #aaa;
-	overflow:hidden;
-	padding: 3px 7px 0px 11px;
-	padding-top: 3px;
-	font-size:1.5em;
-	display:inline-block;
-	float:right;
-	width: 15px;
-	height: 27px;
+  border-left:1px solid #aaa;
+  overflow:hidden;
+  padding: 3px 7px 0px 11px;
+  padding-top: 3px;
+  font-size:1.5em;
+  display:inline-block;
+  float:right;
+  width: 15px;
+  height: 27px;
 }
 
 .saturate{
@@ -62,43 +63,44 @@ div.selected{
 }
 
 .slider-box{
-	padding-top: 0px;
+  padding-top: 0px;
 }
 
 .ui-slider {
-	width: 200px;
-	height: 5px;
+  width: 200px;
+  height: 5px;
 }
 
 .ui-slider a.ui-slider-handle{
-	height: 10px;
-	width: 10px;
+  height: 10px;
+  width: 10px;
 }
 
-.one {
-	background-color: rgba(0,0,0,0.2);
-	width: 400px;
-	height: 400px;
-	opacity: 1;
+a.ui-slider-handle{
+}
 
-	position: absolute;
-	top: 25%;
-	left: 30%;
-	-webkit-transform-origin:50% 50%;
-	-webkit-transition: -webkit-transform 0.1s linear, background-color 1s linear;
+.box {
+  pointer-events:none;
+  opacity: 1;
+  -webkit-transform-origin:50% 50%;
+  -webkit-transition: -webkit-transform 0.1s linear, background-color 1s linear;
+}
+.one {
+  background-color: rgba(0,0,0,0.2);
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 25%;
+  left: 30%;
 }
 
 .two {
-	background-color: rgba(0,0,0,0.2);
-	width: 290px;
-	height: 290px;
-	opacity: 1;
-	position: relative;
-	top: 55px;
-	left: 55px;
-	-webkit-transform-origin:50% 50%;
-
-	-webkit-transition:0.1s all linear;
+  background-color: rgba(0,0,0,0.2);
+  width: 290px;
+  height: 290px;
+  position: relative;
+  top: 55px;
+  left: 55px;
 }
 
 .three {
@@ -109,20 +111,13 @@ div.selected{
 	position: relative;
 	top: 45px;
 	left: 45px;
-	-webkit-transform-origin:50% 50%;
-
-	-webkit-transition:0.1s all linear;
 }
 
 .four {
 	background-color: rgba(0,0,0,0.7);
 	width: 150px;
 	height: 150px;
-	opacity: 1;
 	position: relative;
 	top: 25px;
 	left: 25px;
-	-webkit-transform-origin:50% 50%;
-
-	-webkit-transition:0.25s all linear;
 }
