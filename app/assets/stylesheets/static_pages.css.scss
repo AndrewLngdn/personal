@@ -4,7 +4,7 @@ body, html {
 
 .triangle {
   float:right;
-  margin: 4px;
+  margin: 4px 4px 4px 4px;
   width: 0px;
   height: 0px;
   border-style: solid;
@@ -12,6 +12,9 @@ body, html {
   border-color: transparent #c2c2c2 transparent transparent;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  &:hover{
+    border-color: transparent #27aab8 transparent transparent;
+  }
 }
 
 .left-column {
@@ -57,7 +60,6 @@ span.title {
   font-size: 2em;
   margin-bottom: 20px;
   margin-left: 10px;
-  //color: #AAA;
   color: rgba(170, 170, 170, 0.85);
 }
 
@@ -93,11 +95,16 @@ span.title {
 
   .dropdown-bar{
     cursor: pointer;
+    width: 155px;
+
+    &:hover {
+      color: #27aab8;
+    }
 
     .to-drop{
       max-height: 200px;
       opacity: 1;
-      color: red;
+      color: rgb(165, 165, 165);
       overflow:hidden;
       -webkit-transition: max-height 1s, opacity 1s;
 
@@ -120,6 +127,7 @@ span.title {
     border-color: grey;
     -webkit-transition: border-color 0.2s, opacity 1.5s;
     transition: border-color 0.2s, opacity 1.5s;
+
     &:hover{
       opacity: 1;
       border-color: #00d4f4;
@@ -136,16 +144,17 @@ a.link {
   text-decoration: none;
   background-color: transparent;
 
+  &:visited{
+    color: #bbb;
+  }
+
   &:hover {
     background-color: transparent;
     color: #27aab8;
     -webkit-transition: color 1s;
     transition: color 1s;
     border-color: #27aab8;
+  }
 
-  }
-  &:visited{
-    color: #bbb;
-  }
 }
 
