@@ -20,10 +20,23 @@
 
 
 var staticPages = {
+    resizeCount: 0,
     init: function(){
         $('.dropdown-bar').click(function(){
             $(this).children('.triangle').toggleClass("rotate-n90");
             $(this).children('.to-drop').toggleClass("height-0");
         });
+        staticPages.resizeCount = 0;
+        setInterval(staticPages.resizeMain, 50);
+    },
+
+    resizeMain: function(){
+        if (staticPages.resizeCount < 100){
+            var height = $('.main')[0].scrollHeight;
+            $(".base, .main, .bg-gradient").css('height', height);
+        } else {
+            staticPages.resizeCount = 0;
+        }
     }
 }
+
