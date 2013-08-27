@@ -132,7 +132,7 @@ span.title {
     .height-0{
       max-height: 0px;
       opacity: 0;
-      -webkit-transition: max-height 1s opacity 1s;
+      -webkit-transition: max-height 1s, opacity 1s;
     }
 
   }
@@ -178,3 +178,42 @@ a.link {
 
 }
 
+@media screen and (max-width: 867px) {
+  .left-column {
+    margin: none;
+    float: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .main {
+    padding: 0px 10px 0px 10px;
+    height: 100%;
+  }
+
+  body{
+    height: 100%;
+  }
+
+  .right-column {
+    padding-top: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    float: none;
+    border-left:none;
+    border-top: 1px solid #494949;
+
+    & > span {
+      float: none;
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 429px) {
+  body{
+    height: 120%;
+  }
+}
