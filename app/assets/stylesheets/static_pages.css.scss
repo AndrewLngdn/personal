@@ -50,7 +50,6 @@ body, html {
 .left-column {
   max-width: 580px;
   padding-top: 40px;
-  height: 100%;
   float: left;
 }
 
@@ -78,11 +77,12 @@ span.title {
 }
 
 #andrewlngdn {
-  color: rgba(83,83,83,0.85);
+  //color: rgba(83,83,83,0.85);
+  color: rgba(170, 170, 170, 0.85);
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
   &:hover{
-    color: rgba(170, 170, 170, 0.85);
+    color: rgba(170, 170, 170, 1);
     -webkit-transition: color 0.5s;
     transition: color 0.5s;
   }
