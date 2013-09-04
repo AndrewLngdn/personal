@@ -1,4 +1,4 @@
-$highlight-color: #E6BE9E;
+$highlight-color: #849ACA;
 
 body, html {
   height: 100%;
@@ -94,7 +94,7 @@ span.title {
 
 #andrewlngdn {
   color: $highlight-color;
-  opacity: 0.5;
+  //opacity: 0.5;
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
   &:hover{
