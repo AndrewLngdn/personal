@@ -28,15 +28,8 @@ var staticPages = {
         });
         staticPages.resizeCount = 0;
         setInterval(staticPages.resizeMain, 50);
-    },
-
-    resizeMain: function(){
-        if (staticPages.resizeCount < 100){
-            var height = $('.main')[0].scrollHeight;
-            $(".base, .main, .bg-gradient").css('height', height);
-        } else {
-            staticPages.resizeCount = 0;
-        }
     }
+
+
 }
 

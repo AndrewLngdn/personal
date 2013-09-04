@@ -1,25 +1,22 @@
+$highlight-color: #E6BE9E;
+
 body, html {
   height: 100%;
 }
 
 .main {
   box-sizing: border-box;
-  padding: 0px 20px 0px 10px;
-  background-color: rgba(54, 53, 53, 0.6);
-  width: 85%;
+  background-color: rgba(54, 53, 53, 1);
+  width: 57.9%;
   max-width: 800px;
   height: 100%;
   margin: auto;
 }
 
 .bg-gradient{
-  background: -moz-linear-gradient(left, rgba(0,0,0,0.56) 0%, rgba(0,0,0,0.56) 1%, rgba(0,0,0,0.06) 25%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.5) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(0,0,0,0.56)), color-stop(1%,rgba(0,0,0,0.56)), color-stop(25%,rgba(0,0,0,0.06)), color-stop(28%,rgba(0,0,0,0)), color-stop(75%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.5))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, rgba(0,0,0,0.56) 0%,rgba(0,0,0,0.56) 1%,rgba(0,0,0,0.06) 25%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 75%,rgba(0,0,0,0.5) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, rgba(0,0,0,0.56) 0%,rgba(0,0,0,0.56) 1%,rgba(0,0,0,0.06) 25%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 75%,rgba(0,0,0,0.5) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, rgba(0,0,0,0.56) 0%,rgba(0,0,0,0.56) 1%,rgba(0,0,0,0.06) 25%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 75%,rgba(0,0,0,0.5) 100%); /* IE10+ */
-  background: linear-gradient(to right, rgba(0,0,0,0.56) 0%,rgba(0,0,0,0.56) 1%,rgba(0,0,0,0.06) 25%,rgba(0,0,0,0) 28%,rgba(0,0,0,0) 75%,rgba(0,0,0,0.5) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f000000', endColorstr='#80000000',GradientType=1 ); /* IE6-9 */
+  height: 100%;
+
+  lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f000000', endColorstr='#80000000',GradientType=1 ); /* IE6-9 */
 }
 
 .base, .main, .bg-gradient{
@@ -29,7 +26,7 @@ body, html {
 }
 
 .base {
-  background-image: image-url("bg-dark.png");
+  background-color: #5E5E5E;
 }
 
 .triangle {
@@ -43,8 +40,19 @@ body, html {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
   &:hover{
-    border-color: transparent #27aab8 transparent transparent;
+    border-color: transparent $highlight-color transparent transparent;
   }
+}
+
+.stripe {
+  display: inline-block;
+  background-image: image-url("bg-dark.png");
+  height: 100%;
+  width: 20px;
+  float: left;
+  margin-right: 5px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 }
 
 .left-column {
@@ -56,10 +64,18 @@ body, html {
 .right-column {
   padding-top: 40px;
   box-sizing: border-box;
-  width: 187px;
+  width: 25%;
+  padding-right: 1.3%;
   height: 100%;
   float: right;
-  border-left: 1px solid rgb(65, 65, 65);
+  border-left: 1px solid rgba(65, 65, 65, 0);
+  background-color: rgba(55,55,55,1);
+  -webkit-transition: border 1s;
+  &:hover {
+    border-left: 1px solid rgba(65, 65, 65, 1);
+    -webkit-transition: border 1s;
+
+  }
 }
 
 footer {
@@ -69,16 +85,16 @@ footer {
 
 span.title {
   cursor: default;
+
   display: inline-block;
   font-size: 2em;
-  margin-bottom: 20px;
   margin-left: 10px;
-  color: rgba(170, 170, 170, 0.85);
+  color: $highlight-color;
 }
 
 #andrewlngdn {
-  //color: rgba(83,83,83,0.85);
-  color: rgba(170, 170, 170, 0.85);
+  color: $highlight-color;
+  opacity: 0.5;
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
   &:hover{
@@ -144,7 +160,7 @@ span.title {
 
     &:hover{
       opacity: 1;
-      border-color: #00d4f4;
+      border-color: $highlight-color;
       -webkit-transition: border-color 0.2s, opacity 1.5s;
       transition: border-color 0.2s, opacity 1.5s;
     }
@@ -164,10 +180,10 @@ a.link {
 
   &:hover {
     background-color: transparent;
-    color: #27aab8;
+    color: $highlight-color;
     -webkit-transition: color 1s;
     transition: color 1s;
-    border-color: #27aab8;
+    border-color: $highlight-color;
   }
 }
 
