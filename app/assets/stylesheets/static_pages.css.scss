@@ -7,7 +7,8 @@ body, html {
 .main {
   box-sizing: border-box;
   background-color: rgba(54, 53, 53, 1);
-  width: 57.9%;
+  width: 745px;
+
   max-width: 800px;
   height: 100%;
   margin: auto;
@@ -16,7 +17,7 @@ body, html {
 .bg-gradient{
   height: 100%;
 
-  lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f000000', endColorstr='#80000000',GradientType=1 ); /* IE6-9 */
+  //lter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8f000000', endColorstr='#80000000',GradientType=1 ); /* IE6-9 */
 }
 
 .base, .main, .bg-gradient{
@@ -74,7 +75,6 @@ body, html {
   &:hover {
     border-left: 1px solid rgba(65, 65, 65, 1);
     -webkit-transition: border 1s;
-
   }
 }
 
@@ -204,6 +204,8 @@ a.link {
   .main {
     padding: 0px 10px 0px 10px;
     height: 100%;
+    width: 392px;
+
   }
 
   body{
@@ -215,15 +217,21 @@ a.link {
     padding-bottom: 20px;
     margin-top: 20px;
     box-sizing: border-box;
-    width: 100%;
+    width: 102.8%;
     height: auto;
     float: none;
     border-left:none;
-    border-top: 1px solid #494949;
+    border: 1px solid rgba(65, 65, 65, 0);
+    -webkit-transition: border 1s;
 
     & > span {
       float: none;
       margin: 0;
+    }
+
+    &:hover {
+      border: 1px solid rgba(65, 65, 65, 1);
+      -webkit-transition: border 1s;
     }
   }
 }
