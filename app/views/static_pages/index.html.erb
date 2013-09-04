@@ -17,10 +17,6 @@
         </div>
         <div class="right-column">
           <span class="title right " id="andrewlngdn">andrewlngdn</span>
-          <%= #link_to "github.com/andrewlngdn",
-              #        "https://github.com/AndrewLngdn",
-              #        :class => "link right"
-          %>
         </div>
 
       </div>
@@ -33,3 +29,16 @@
 <script>
     staticPages.init();
 </script>
+
+<script src="http://connect.soundcloud.com/sdk.js"></script>
+<script>
+    SC.initialize({
+        client_id: 'de925f065dafa57b3847a539ad7e84b6'
+    });
+
+    // stream track id 293
+    SC.stream("/tracks/72671937", function(sound){
+//        sound.play();
+    });
+</script>
+

@@ -117,6 +117,7 @@ span.title {
   vertical-align: top;
 }
 
+
 .project {
   display:inline-block;
   margin: 10px;
@@ -145,6 +146,11 @@ span.title {
       -webkit-transition: max-height 1s, opacity 1s;
     }
 
+  }
+
+  .song-iframe{
+    height: 80px;
+    margin-top: 16px;
   }
 
   .project-image {
