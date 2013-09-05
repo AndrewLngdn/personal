@@ -1,3 +1,5 @@
+<script src="http://connect.soundcloud.com/sdk.js"></script>
+
 <div class="base">
   <div class="bg-gradient">
 
@@ -26,11 +28,13 @@
 <footer>
   background by Eonscintilla
 </footer>
+
+
 <script>
     staticPages.init();
 </script>
 
-<script src="http://connect.soundcloud.com/sdk.js"></script>
+
 <script>
     SC.initialize({
         client_id: 'de925f065dafa57b3847a539ad7e84b6'
@@ -39,6 +43,9 @@
     // stream track id 293
     SC.stream("/tracks/72671937", function(sound){
 //        sound.play();
+    });
+    SC.get("/tracks/72671937", function(track){
+       console.log(track["artwork_url"]);
     });
 </script>
 
