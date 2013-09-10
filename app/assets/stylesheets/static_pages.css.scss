@@ -4,6 +4,9 @@ body, html {
   height: 100%;
 }
 
+.inline-block {
+  display:inline-block;
+}
 .main {
   box-sizing: border-box;
   background-color: rgba(54, 53, 53, 1);
@@ -30,6 +33,17 @@ body, html {
   background-color: #5E5E5E;
 }
 
+.play-button{
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 10px 0 10px 20px;
+  border-color: transparent transparent transparent #ffffff;
+  vertical-position: center;
+  margin:auto;
+  top: 38%;
+  position: relative;
+}
 .triangle {
   float:right;
   margin: 4px 4px 4px 4px;
@@ -57,7 +71,7 @@ body, html {
 }
 
 .left-column {
-  max-width: 580px;
+  max-width: 520px;
   padding-top: 40px;
   float: left;
 }
@@ -173,7 +187,7 @@ span.title {
   }
 }
 
-a.link {
+.link {
   -webkit-transition: color 1s;
   transition: color 1s;
   color: #bbb;

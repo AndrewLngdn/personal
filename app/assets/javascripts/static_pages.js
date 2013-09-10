@@ -16,6 +16,10 @@ var staticPages = {
             $(this).children('.triangle').toggleClass("rotate-n90");
             $(this).children('.to-drop').toggleClass("height-0");
         });
+        $('.song .dropdown-bar').click(function(e){
+            var song =  $(e.target.parentNode).data("song");
+            staticPages.playTrack(staticPages.tracks[song]);
+        });
 
         SC.initialize({
             client_id: 'de925f065dafa57b3847a539ad7e84b6'
