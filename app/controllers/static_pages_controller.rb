@@ -10,4 +10,8 @@ class StaticPagesController < ApplicationController
   def dots
 
   end
+
+  def venmo
+
+  end
 end

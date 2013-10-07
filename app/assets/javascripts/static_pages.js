@@ -10,6 +10,7 @@ var staticPages = {
     },
 
     currentSound: undefined,
+    currentTrack: undefined,
 
     init: function(){
         $('.dropdown-bar').click(function(){
@@ -18,7 +19,12 @@ var staticPages = {
         });
         $('.song .dropdown-bar').click(function(e){
             var song =  $(e.target.parentNode).data("song");
-            staticPages.playTrack(staticPages.tracks[song]);
+            if (staticPages.currentSound !== undefined)  {
+                staticPages.currentSound.stop();
+                staticPages.currentSound = undefined;
+            } else {
+                staticPages.playTrack(staticPages.tracks[song]);
+            }
         });
 
         SC.initialize({
@@ -27,6 +33,9 @@ var staticPages = {
 
 //        staticPages.playTrack(staticPages.tracks.activate);
     },
+
+    // when clicking a song while one is playing, if it's the same song that's playing
+    // stop the sound. if it's a different one, stop the sound and play the other one instead.
     playTrack: function(track){
         SC.stream(track, function(sound){
             if (staticPages.currentSound !== undefined) {
