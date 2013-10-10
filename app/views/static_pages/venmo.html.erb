@@ -1,1 +1,73 @@
+<style>
+
+    a.venmo-button {
+        font-size: 14px;
+        font-family: Sans-Serif;
+        border-radius: 3px;
+        padding: 5px 8px;
+        background-color: #3D95CE;
+        color: white;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+        text-decoration: none;
+    }
+
+    a.venmo-button:visited{
+        color: white;
+    }
+
+    .venmo-button:hover {
+        background-color: #3785B8;
+    }
+
+    .venmo-button-amount {
+        display: inline-block;
+        font-weight: 600;
+        margin-right: 3px;
+    }
+    .venmo-button-amount:before {
+        content: "$";
+        font-size: 0.8em;
+        position: relative;
+        top: -1px;
+        font-weight: 300;
+    }
+
+    .venmo-logo {
+        background-image: url(<%= asset_path 'venmo-logo-white.png' %>);
+        background-repeat: no-repeat;
+        background-size: contain;
+        display: inline-block;
+        width: 48px;
+        height: 9px;
+    }
+
+    .venmo-button-plus{
+        display: inline-block;
+        position:relative;
+        top:-1px;
+        right: -2px;
+        font-weight: 500;
+    }
+</style>
+
 venmo
+
+<p>go to this url to make a payment link with venmo:</p>
+
+https://venmo.com/payment-links
+
+<p>then paste it in the box below</p>
+
+<input class="generate-venmo-button"></input>
+
+<div class="button-area"> </div>
+
+<script>
+    venmoButton.init();
+</script>

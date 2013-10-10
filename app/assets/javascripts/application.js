@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require three
 //= require jscolor
+//= require parseUri
 //= require_tree .
 
 
