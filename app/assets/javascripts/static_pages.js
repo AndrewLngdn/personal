@@ -17,19 +17,19 @@ var staticPages = {
             $(this).children('.triangle').toggleClass("rotate-n90");
             $(this).children('.to-drop').toggleClass("height-0");
         });
-        $('.song .dropdown-bar').click(function(e){
-            var song =  $(e.target.parentNode).data("song");
-            if (staticPages.currentSound !== undefined)  {
-                staticPages.currentSound.stop();
-                staticPages.currentSound = undefined;
-            } else {
-                staticPages.playTrack(staticPages.tracks[song]);
-            }
-        });
-
-        SC.initialize({
-            client_id: 'de925f065dafa57b3847a539ad7e84b6'
-        });
+//        $('.song .dropdown-bar').click(function(e){
+//            var song =  $(e.target.parentNode).data("song");
+//            if (staticPages.currentSound !== undefined)  {
+//                staticPages.currentSound.stop();
+//                staticPages.currentSound = undefined;
+//            } else {
+//                staticPages.playTrack(staticPages.tracks[song]);
+//            }
+//        });
+//
+//        SC.initialize({
+//            client_id: 'de925f065dafa57b3847a539ad7e84b6'
+//        });
 
 //        staticPages.playTrack(staticPages.tracks.activate);
     },
