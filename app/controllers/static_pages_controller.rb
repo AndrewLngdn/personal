@@ -14,4 +14,8 @@ class StaticPagesController < ApplicationController
   def venmo
 
   end
+
+  def scrollSound
+
+  end
 end

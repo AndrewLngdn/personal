@@ -1,0 +1,212 @@
+work in progress, jquery plugin and info coming soon
+
+<style>
+
+    html{
+        height: 4000px;
+
+    }
+    body {
+        /*background-image: url(http://i.imgur.com/Wg59sVb.png);*/
+        background: rgb(124,124,124); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(124,124,124,1) 0%, rgba(7,7,7,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(124,124,124,1)), color-stop(100%,rgba(7,7,7,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(124,124,124,1) 0%,rgba(7,7,7,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(124,124,124,1) 0%,rgba(7,7,7,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(124,124,124,1) 0%,rgba(7,7,7,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(124,124,124,1) 0%,rgba(7,7,7,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7c7c7c', endColorstr='#070707',GradientType=0 ); /* IE6-9 */
+
+
+    }
+    .center-eq {
+        height: 30px;
+        position:fixed;
+        top: 50%;
+        left: 50%;
+        opacity: 1;
+        -webkit-filter: saturate(10);
+        /*background-color: #333;*/
+        background-color: transparent;
+        /*width:30em;*/
+        /*height:18em;*/
+        /*margin-top: 300px; set to a negative number 1/2 of your height*/
+        margin-left: -200px; /*set to a negative number 1/2 of your width*/
+        border: 1px solid #ccc;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+
+<div class="center-eq">
+  <canvas width="500" height="30"></canvas>
+</div>
+
+<script>
+
+    (function($){
+        window.onload = init;
+        var context;
+        var sources = [];
+        var gainNodes = [];
+        var scrollSoundInstance;
+        var audioAnalyser, compressor;
+        var count = 0;
+        var settings;
+
+        function init() {
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            context = new AudioContext();
+            compressor = context.createDynamicsCompressor();
+            compressor.threshold.value = -50;
+            compressor.ratio.value = 3;
+            audioAnalyser = context.createAnalyser();
+            audioAnalyser.smoothingTimeConstant = 0.9;
+            compressor.connect(audioAnalyser);
+            audioAnalyser.connect(context.destination);
+
+
+            mySpectrum = setInterval(drawSpectrum, 15);
+            $(window).trigger("scrollHeightContextLoaded");
+        }
+
+        function loadBuffer(url, offset) {
+            var request = new XMLHttpRequest();
+            request.open("GET", url, true);
+            request.responseType = "arraybuffer";
+
+            request.onload = function() {
+
+                context.decodeAudioData(
+                        request.response,
+                        function(buffer) {
+                            if (!buffer) {
+                                alert('error decoding file data: ' + url);
+                                return;
+                            }
+                            finishedLoading(buffer, offset);
+                        },
+                        function(error) {
+                            console.error('decodeAudioData error', error);
+                        }
+                );
+            };
+
+
+            request.onerror = function() {
+                alert('BufferLoader: XHR error');
+            }
+
+            request.send();
+        }
+
+        function finishedLoading(buffer, offset) {
+            var response = createSource(buffer, offset);
+            var gainNode = response.gainNode;
+            var source = response.source;
+            gainNodes.push(gainNode);
+            sources.push(source);
+            source.start(0);
+
+            return {
+                source: source,
+                gainNode: gainNode
+            };
+        }
+
+        function createSource(buffer, offset) {
+            var source = context.createBufferSource();
+            var gainNode = context.createGain();
+            source.buffer = buffer;
+            source.loop = true;
+            source.connect(gainNode);
+            gainNode.connect(compressor);
+
+            console.log(settings);
+
+            if (settings.autoPlay === false){
+                gainNode.gain.value = 0.0;
+            } else {
+                gainNode.gain.value = 1.0;
+                console.log(gainNode.gain.value);
+            }
+
+            attachScrollListener(gainNode, offset);
+
+            return {
+                source: source,
+                gainNode: gainNode
+            };
+        }
+
+        function attachScrollListener(gainNode, offset){
+            var offset = offset;
+            scrollSoundInstance.scroll(function(){
+
+                var scrollHeight = $(this).scrollTop();
+                var gain = Math.max(1 - 0.0000005*Math.pow(scrollHeight-offset,2), 0);
+                gainNode.gain.value = gain;
+            });
+        }
+
+
+
+        function drawSpectrum() {
+            var canvas = document.querySelector('canvas');
+            var ctx = canvas.getContext('2d');
+            var width = canvas.width;
+            var height = canvas.height;
+            var bar_width = 1;
+
+            ctx.clearRect(0, 0, width, height);
+
+            var freqByteData = new Uint8Array(audioAnalyser.frequencyBinCount);
+            audioAnalyser.getByteFrequencyData(freqByteData);
+            var barCount = Math.round(width / bar_width);
+            for (var i = 0; i < barCount; i++) {
+                var magnitude = freqByteData[i];
+                // some values need adjusting to fit on the canvas
+
+                var intensity = parseInt("AA", 16);
+                count++;
+                intensity = Math.min(Math.round(intensity-170 + 2*intensity*magnitude/255), 255);
+                var intensityString = intensity.toString(16);
+
+                if (count%10000 === 0 ){
+
+                    // console.log(intensityString);
+                    // console.log(intensity);
+
+                    // console.log("#" + intensityString + "aa" + "00");
+                    // console.log("intensity" + -intensity/2.7 + 40);
+
+                }
+
+                ctx.globalAlpha= Math.max(0, Math.min(1, 0.5 + Math.pow((magnitude/255), 2)));
+
+                ctx.fillStyle="#" + intensityString + "aa" + "00";
+                // ctx.fillStyle="#FFFFFF";
+
+                ctx.fillRect(bar_width * i, height, bar_width - 2, -height);
+            }
+        }
+
+        $.fn.scrollSound = function(url, height, options) {
+            scrollSoundInstance = this;
+            settings = $.extend({
+                autoPlay: false
+            }, options);
+
+            $(window).on('scrollHeightContextLoaded', function(){
+                loadBuffer(url, height);
+            });
+
+            return this;
+        }
+    })(jQuery);
+    
+    // autoplay not working yet
+    $(document).scrollSound("Roadtrip.mp3", 0, {autoPlay: true});
+    $(document).scrollSound("pptwaves.mp3", 2000);
+    $(document).scrollSound("12345.mp3", 4000);
+</script>
