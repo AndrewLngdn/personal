@@ -3,8 +3,8 @@ Personal::Application.routes.draw do
   get 'kaleidosine' => 'static_pages#kaleidosine'
   get 'saturate' => 'static_pages#saturate'
   get 'dots' => 'static_pages#dots'
-  get 'venmo-button' => 'static_pages#venmo'
-  get 'scroll-sound' => 'static_pages#scrollSound'
+  get 'venmo_button' => 'static_pages#venmo'
+  get 'scroll_sound' => 'static_pages#scrollSound'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

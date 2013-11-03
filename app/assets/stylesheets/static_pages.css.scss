@@ -72,7 +72,18 @@ body, html {
   border-right: 1px solid black;
 }
 
+.pull-right{
+  position: absolute;
+  right: 0;
+}
+
 .left-column {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   max-width: 520px;
   padding-top: 40px;
   float: left;
@@ -88,6 +99,12 @@ body, html {
   border-left: 1px solid rgba(65, 65, 65, 0);
   background-color: rgba(55,55,55,1);
   -webkit-transition: border 1s;
+
+  .links {
+    margin-top: 27px;
+    margin-left: 10px;
+  }
+
   &:hover {
     border-left: 1px solid rgba(65, 65, 65, 1);
     -webkit-transition: border 1s;
