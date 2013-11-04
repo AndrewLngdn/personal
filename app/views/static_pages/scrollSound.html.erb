@@ -174,13 +174,11 @@
             source.connect(gainNode);
             gainNode.connect(compressor);
 
-            console.log(settings);
 
             if (settings.autoPlay === false){
                 gainNode.gain.value = 0.0;
             } else {
                 gainNode.gain.value = 1.0;
-                console.log(gainNode.gain.value);
             }
 
             attachScrollListener(gainNode, offset);
@@ -196,11 +194,8 @@
             scrollSoundInstance.scroll(function(){
                 var scrollHeight = $(this).scrollTop();
 
-                console.log("");
                 var gainFunction = Math.min(Math.pow(2,-0.000007*(Math.pow(scrollHeight-offset,2))), 1);
                 var gain = Math.max(1 - 0.0000005*Math.pow(scrollHeight-offset,2), 0);
-                console.log("gainf " + gainFunction);
-                console.log("gain " + gain);
 
                 // var gain = Math.max(1 - 0.0000005*Math.pow(scrollHeight-offset,2), 0);
                 // gainNode.gain.value = gain;
